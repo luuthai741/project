@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Trang quản trị - OGANI</title>
+<head th:replace="./admin-layout :: html_head">
+</head>
+
+<body>
+    <th:block th:replace="./admin-layout :: header"> </th:block>
+    <h3>
+    		Xin chào, <span class="text-uppercase font-weight-bold" sec:authentication="name"></span> !!	 &nbsp;
+    	</h3>
+    
+       <th:block th:replace="./admin-layout :: footer"> </th:block>
+</body>
+ <th:block th:replace="./admin-layout :: script"></th:block>
+</html>

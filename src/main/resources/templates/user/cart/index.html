@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Giỏ hàng - OGANI</title>
+<head th:replace="./user-layout :: html_head">
+</head>
+
+<body>
+    <th:block th:replace="./user-layout :: header"> </th:block>
+  	    <div class="container px-4 py-5 mx-auto">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Thông tin sách</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-hover-custome" th:each="item :${items}">
+                    <th scope="row">
+                        <div class="row d-flex">
+                            <div class="book"> <img
+                                    src="../image/nhung ngoi sao xa xoi_bia.u335.d20160803.t155556.276062.jpg"
+                                    class="book-img"> </div>
+                            <div class="my-auto flex-column d-flex pad-left">
+                                <h5 class="mob-text" th:text=${item.bookName}></h5>
+                                <p class="mob-text" th:text=${item.bookAuthor}></p>
+                            </div>
+                        </div>
+                    </th>
+                    <td>
+
+                        <div class="row text-center">
+                            <span>
+                                <form th:action="@{'/cart/update?itemId=' + ${item.id} + '&quantity=-1'}" method="POST"> 
+                            		<button class="minus" type="submit" >-</button>
+                            	</form>
+                           
+                            </span>
+                            <span class="text-custome" th:text=${item.itemQuantity}>
+                                
+                            </span>
+                            <span>
+                            	 <form th:action="@{'/cart/update?itemId=' + ${item.id} + '&quantity=1'}" method="POST"> 
+                            		<button class="plus" type="submit" >+</button>
+                            	</form>
+                            </span>
+                        </div>
+                    </td>
+                    <td style="font-size: 24px" class="align-self-center" th:text="${(item.bookPrice*item.itemQuantity)}"></td>
+                    <td class="align-self-center">
+                        <a th:href="@{/cart/delete?id=} + ${item.id}">
+                            <h4><i class="fas fa-trash"></i></h4>
+                        </a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="row">
+                        Tổng số tiền :<b> $<span th:text="${total}"></span></b>
+                    </div>
+                    <div class="row">
+                    <form role="form" th:action="@{/cart/check-out}" method="POST" >                     
+                        <button type="submit" class="btn-block btn-blue">Thanh toán</button>      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="./user-layout :: footer"> </th:block>
+</body>
+ <th:block th:replace="./user-layout :: script"></th:block>
+</html>

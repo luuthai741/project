@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Đăng nhập - OGANI</title>
+<head th:replace="./user-layout :: html_head">
+</head>
+<body>
+    <th:block th:replace="./user-layout :: header"> </th:block>
+    <div class="container">
+    	<div class="container">
+        <div class="login-popup-wrap new_login_popup">
+            <div class="login-popup-heading text-center img_mg">
+                <img src="./logo.png" />
+            </div>
+            <!--<form accept-charset="utf-8" method="post" action="">-->
+            <form th:action="@{/login}" method="POST" >
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" placeholder="Xin mời nhập tên tài khoản"
+                        name="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" placeholder="Xin mời nhập mật khẩu"
+                        name="password">
+                </div>
+                <button type="submit" class="btn btn-default login-popup-btn">Đăng nhập</button>
+            </form>
+            <div class="form-group text-center">
+                Bạn đã quên mật khẩu? <a class="pwd-forget" th:href="@{/forgot-password}" id="open_forgotPassword">Tìm lại
+                    mật khẩu</a>
+            </div>
+            <div class="text-center">Bạn chưa có có tài khoản?<a
+                    th:href="@{/register}">Nhấn vào đây</a></div>
+        </div>
+    </div>
+    </div>
+       <th:block th:replace="./user-layout :: footer"> </th:block>
+</body>
+ <th:block th:replace="./user-layout :: script"></th:block>
+</html>

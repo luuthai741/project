@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Chi tiết - OGANI</title>
+<head th:replace="./admin-layout :: html_head">
+</head>
+
+<body>
+    <th:block th:replace="./admin-layout :: header"> </th:block>
+      <div>
+        <div class="container " style="margin-top:52px">
+            <p>
+                <span><a href="./index.html"> Trang chủ </a><i class="fas fa-angle-right"></i></span>
+                <span><a href="./genres.html"> Sách </a><i class="fas fa-angle-right"></i></span>
+                <span><a> Thông tin chi tiết </a></span>
+            </p>
+            <div style="margin-bottom: 20px">
+                <a class="btn btn-outline-warning" href="#"><i class="fas fa-plus-circle"></i> Cập
+                  nhật</a>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>ID: <span th:text="${book.id}"></span></p>
+                    <P>Tên sách: <span th:text="${book.name}"></span></P>
+                    <p>Hình sách: <img th:src="@{${book.imagePath}}" style="width: 50px;height: 50px"/></p>
+                    <P>Tên tác giả: <span th:text="${book.author}"></span></P>
+                    <P>Giá tiền: <span th:text="${book.price}"></span> $</P>
+                     <P>Mô tả: <span th:text="${book.description}"></span></P>
+                    <p>Trạng thái: <span th:if="${book.enabled}">
+									Kích hoạt
+								</span> 
+								<span th:unless="${book.enabled}">
+									Ngưng
+								</span></p>
+                    <p>Thời gian tạo: <span th:text="${book.createAt}"></span></p>
+                    <p>Cập nhật bởi: <span th:text="${book.lastModifiedBy}"></span></p>
+                </div>
+                <div class="col-md-6">
+                     Nội dung: <span th:utext="${book.content}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="./admin-layout :: footer"> </th:block>
+</body>
+ <th:block th:replace="./admin-layout :: script"></th:block>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Trang quản trị - OGANI</title>
+<head th:replace="./admin-layout :: html_head">
+</head>
+
+<body>
+    <th:block th:replace="./admin-layout :: header"> </th:block>
+       <div style="margin-top:52px">
+        <div class="container">
+            <p>
+                <span><a href="./index.html"> Trang chủ </a><i class="fas fa-angle-right"></i></span>
+                <span><a>Người dùng</a></span>
+            </p>
+            <div style="margin-bottom: 20px">
+                <a class="btn btn-outline-secondary" th:href="@{/admin/books/add}"><i class="fas fa-plus-circle"></i> Thêm người dùng</a>
+            </div>
+            <th:block th:if="${#lists.isEmpty(users)}">
+    			<h5>Chưa có người dùng nào sử dụng!</h5>
+			</th:block>
+			<th:block th:unless="${#lists.isEmpty(users)}">
+	            <table class="table">
+	                <thead>
+	                    <tr>
+	                        <th scope="col"><i class="fas fa-th-list"></i></th>
+	                        <th scope="col">Tên người dùng</th>
+	                        <th scope="col">Email</th>
+	                        <th scope="col">Trạng thái</th>
+	                        <th scope="col">Xử lý</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr class="table table-hover-custome" th:each="user,index : ${users}" >
+	                        <th scope="row" th:text="${index.count}"></th>
+	                        <td th:text="${user.username}"></td>
+	                        <td th:text="${user.email}"></td>
+	                        <td>
+	                        	<span class="text-success" th:if="${user.enabled}">
+									<h5><i class="fas fa-check"></i></h5>
+								</span> 
+								<span class="text-danger" th:unless="${user.enabled}">
+									<h5><i class="fas fa-times"></i></h5>
+								</span>
+	                        </td>
+	                        <td>
+	                    
+	                           <a class="btn btn-outline-info " th:href="@{/admin/users/}+ ${user.id}">Xem</a>
+	                           <a class="btn btn-outline-danger " th:href="@{/admin/users/delete/} + ${user.id}">Xóa</a>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+            </th:block>
+        </div>
+    </div>
+ 
+<th:block th:replace="./admin-layout :: footer"> </th:block>
+</body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+
+})
+/*]]>*/
+ * 
+
+ */
+</script>
+<script type="text/javascript">
+$('#pagination-demo').twbsPagination({
+    totalPages: 50,
+    visiblePages: 5,
+    startPage: 2
+});
+</script>
+<th:block th:replace="./admin-layout :: paging"></th:block>
+ <th:block th:replace="./admin-layout :: script"></th:block>
+ 
+</html>

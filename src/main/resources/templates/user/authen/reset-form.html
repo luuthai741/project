@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Thay đổi mật khẩu - OGANI</title>
+<head th:replace="./user-layout :: html_head">
+</head>
+<body>
+    <th:block th:replace="./user-layout :: header"> </th:block>
+    
+     <div class="container">
+        <div class="login-popup-wrap new_login_popup">
+            <div class="login-popup-heading text-center img_mg">
+                <img src="./admin/logo.png" />
+            </div>
+           <form class="form-horizontal" th:action="@{/reset}" method="post">
+                <input type="hidden" name="resetToken" th:value="${resetToken}">
+                <div class="form-group">
+                    <input  type="password" name="password" class="form-control" id="inputPassword4" placeholder="Thay đổi mật khẩu">                  
+                </div>              
+                <button type="submit" class="btn btn-default login-popup-btn" name="submit">Thay đổi</button>
+            </form>
+        </div>
+    </div>
+    
+    <th:block th:replace="./user-layout :: footer"> </th:block>
+</body>
+ <th:block th:replace="./user-layout :: script"></th:block>
+</html>

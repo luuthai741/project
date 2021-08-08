@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Quên mật khẩu - OGANI</title>
+<head th:replace="./user-layout :: html_head">
+</head>
+<body>
+    <th:block th:replace="./user-layout :: header"> </th:block>
+    
+     <div class="container">
+        <div class="login-popup-wrap new_login_popup">
+            <div class="login-popup-heading text-center img_mg">
+                <img src="./admin/logo.png" />
+            </div>
+           <form class="form-horizontal" th:action="@{/forgot}" method="post">
+                
+                <div class="form-group">
+                    <input  type="email" name="email" class="form-control" id="inputPassword4" placeholder="Nhập email để đặt lại mật khẩu">
+                     <span id="checkEmail" style="color: red"></span>
+                </div>              
+                <button type="submit" class="btn btn-default login-popup-btn" name="submit">Tìm kiếm</button>
+            </form>
+        </div>
+    </div>
+    
+    <th:block th:replace="./user-layout :: footer"> </th:block>
+</body>
+ <th:block th:replace="./user-layout :: script"></th:block>
+</html>
